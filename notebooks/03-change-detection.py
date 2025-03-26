@@ -12,13 +12,13 @@ import pwlf
 from sklearn import ensemble, metrics
 from tqdm.auto import tqdm
 
-from src import helpers, modelling, plotting
+from src import helpers, modelling, plotting, constants
 from src.columns import Cols
 
 pd.set_option("display.max_columns", 90)
 
 RANDOM_SEED = 0
-FLD = Path("../data/SHM-outputs")  # update as needed
+FLD = constants.PROCESSED_DATA_DIR  # update as needed
 PRED_TORQUE = "PredictedTorque"
 fp_20hz = FLD / "preprocessed_20hz.parquet"
 # fp_100hz = FLD / "preprocessed_100hz.parquet"
@@ -204,7 +204,7 @@ plotting.rolling_scatter_plot(
     collated_long_periods_df,
     x_col=Cols.ROTOR_SPEED1,
     y_col=Cols.GEN_TORQUE_SET_POINT,
-    color_col=Cols.MET,
+    color_col=Cols.TIMESTAMP,
     window_size=1000,
     starting_idx=116,
 )
